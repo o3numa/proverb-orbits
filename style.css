@@ -1,1 +1,113 @@
-body{background:#0a0a0f;color:#eee;font-family:sans-serif;}h1{text-align:center;margin-top:20px;}
+:root{
+  --bg: #0a0a0f;
+  --ink: #eee;
+  --muted: #b8b8c2;
+  --accent: #67f7c9;
+  --panel: #141421;
+  --focus: #ffd166;
+}
+
+*{ box-sizing: border-box; }
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: radial-gradient(1200px 800px at 70% 20%, #131327 20%, var(--bg) 70%);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+header, footer{
+  padding: 1.2rem clamp(1rem, 3vw, 2rem);
+  background: transparent;
+}
+
+h1{
+  margin: 0 0 .25rem;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.tagline{ color: var(--muted); margin: 0; }
+
+main{ padding: 0 clamp(1rem, 3vw, 2rem) 2rem; }
+
+.controls{
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  background: color-mix(in srgb, var(--panel) 80%, transparent);
+  border: 1px solid #1e1e30;
+  padding: 1rem;
+  border-radius: 12px;
+  margin: 1rem 0 1.2rem;
+}
+
+.controls label{
+  display: block;
+  font-size: .9rem;
+  color: var(--muted);
+  margin-bottom: .25rem;
+}
+
+.controls select,
+.controls input[type="text"],
+.controls input[type="range"],
+.controls button{
+  width: 100%;
+  padding: .6rem .7rem;
+  border-radius: 10px;
+  border: 1px solid #2a2a3d;
+  background: #0f0f1a;
+  color: var(--ink);
+  outline-offset: 2px;
+}
+
+.controls button{
+  cursor: pointer;
+  background: linear-gradient(180deg, #1a1a29, #101018);
+}
+.controls button:hover{ border-color: var(--accent); }
+.controls button:focus-visible{ outline: 2px solid var(--focus); }
+
+.canvas-wrap{
+  position: relative;
+  border: 1px solid #1d1d2f;
+  border-radius: 14px;
+  overflow: hidden;
+  min-height: 440px;
+  background: radial-gradient(900px 600px at 30% 50%, #0d0d18 20%, #080812 70%);
+}
+
+#tooltip{
+  position: absolute;
+  pointer-events: none;
+  max-width: 320px;
+  padding: .6rem .7rem;
+  background: #0a0a14;
+  border: 1px solid #2a2a3d;
+  border-radius: 10px;
+  color: var(--ink);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  display: none;
+  z-index: 10;
+  font-size: .95rem;
+}
+
+#tooltip strong{ color: var(--accent); }
+
+.about{
+  margin-top: 1.4rem;
+  background: #0a0a14;
+  border: 1px solid #1f1f33;
+  border-radius: 12px;
+  padding: 1rem;
+  color: var(--muted);
+}
+
+footer{
+  color: var(--muted);
+  border-top: 1px solid #1e1e30;
+}
+
+a{ color: var(--accent); text-decoration: none; }
+a:focus-visible{ outline: 2px solid var(--focus); border-radius: 6px; }
