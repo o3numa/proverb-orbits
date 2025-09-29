@@ -1,1 +1,58 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Proverb Orbits</title><link rel='stylesheet' href='style.css'><script src='https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js'></script></head><body><h1>Proverb Orbits</h1><div id='p5-holder'></div><script src='script.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proverb Orbits — Ancestral Data as Living Constellations</title>
+  <meta name="description" content="An Afro-Futurist p5.js data sketch: ancestral wisdom visualized as orbits, searchable and interactive." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- p5 must load BEFORE your script.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Proverb Orbits</h1>
+    <p class="tagline">Ancestral wisdom as a living star map (p5.js + JSON)</p>
+  </header>
+
+  <main>
+    <section class="controls" aria-label="Filters and Controls">
+      <label for="themeSelect">Filter by theme:</label>
+      <select id="themeSelect">
+        <option value="all">All</option>
+        <option value="wisdom">Wisdom</option>
+        <option value="community">Community</option>
+        <option value="resilience">Resilience</option>
+        <option value="destiny">Destiny</option>
+      </select>
+
+      <label for="searchInput">Search text:</label>
+      <input id="searchInput" type="text" placeholder="e.g., river, courage, light" />
+
+      <label for="energyRange">Orbit energy:</label>
+      <input id="energyRange" type="range" min="0.2" max="2.0" step="0.1" value="1.0" />
+
+      <button id="resetBtn">Reset</button>
+    </section>
+
+    <section class="canvas-wrap" aria-label="Visualization">
+      <div id="p5-holder"></div>
+      <div id="tooltip" role="dialog" aria-hidden="true"></div>
+    </section>
+
+    <section class="about" aria-label="About the data">
+      <h2>About</h2>
+      <p>
+        Each orbiting node is a proverb from a small dataset (JSON). Use filters or search to explore.
+        Hover a node to reveal its text, language, and origin. The orbit energy slider changes the system’s tempo.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built for Connections Lab — Project 1. <a href="." rel="noopener">View code</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
