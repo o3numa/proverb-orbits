@@ -1,54 +1,52 @@
+/* ===== Base / Reset ===== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img, canvas { display: block; max-width: 100%; }
+
+/* ===== Theme Vars ===== */
 :root{
-  --bg: #0a0a0f;
-  --ink: #eee;
-  --muted: #b8b8c2;
-  --accent: #67f7c9;
-  --panel: #141421;
+  --bg: #0b0c12;
+  --panel: #131624;
+  --ink: #e9ebf1;
+  --muted: #b8bfd3;
+  --accent: #66f6c8;
+  --border: #22283a;
   --focus: #ffd166;
 }
 
-*{ box-sizing: border-box; }
+/* ===== Body & Typography ===== */
 body{
-  margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  background: radial-gradient(1200px 800px at 70% 20%, #131327 20%, var(--bg) 70%);
+  background: radial-gradient(1200px 800px at 70% 20%, #171b32 15%, var(--bg) 70%);
   color: var(--ink);
-  line-height: 1.5;
+  line-height: 1.55;
 }
+h1, h2 { margin: 0 0 .25rem; font-weight: 800; letter-spacing: .2px; }
+p { margin: .5rem 0 0; color: var(--muted); }
 
-header, footer{
-  padding: 1.2rem clamp(1rem, 3vw, 2rem);
-  background: transparent;
-}
+/* ===== Layout ===== */
+header, footer { padding: 1.2rem clamp(1rem, 3vw, 2rem); }
+main { padding: 0 clamp(1rem, 3vw, 2rem) 2rem; }
 
-h1{
-  margin: 0 0 .25rem;
-  font-weight: 800;
-  letter-spacing: .5px;
-}
+.tagline { color: var(--muted); }
 
-.tagline{ color: var(--muted); margin: 0; }
-
-main{ padding: 0 clamp(1rem, 3vw, 2rem) 2rem; }
-
+/* ===== Controls ===== */
 .controls{
   display: grid;
-  gap: .75rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  background: color-mix(in srgb, var(--panel) 80%, transparent);
-  border: 1px solid #1e1e30;
+  gap: .8rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  background: var(--panel);
+  border: 1px solid var(--border);
   padding: 1rem;
   border-radius: 12px;
   margin: 1rem 0 1.2rem;
 }
-
 .controls label{
   display: block;
   font-size: .9rem;
   color: var(--muted);
-  margin-bottom: .25rem;
+  margin-bottom: .3rem;
 }
-
 .controls select,
 .controls input[type="text"],
 .controls input[type="range"],
@@ -56,58 +54,82 @@ main{ padding: 0 clamp(1rem, 3vw, 2rem) 2rem; }
   width: 100%;
   padding: .6rem .7rem;
   border-radius: 10px;
-  border: 1px solid #2a2a3d;
-  background: #0f0f1a;
+  border: 1px solid #2a3146;
+  background: #0e1120;
   color: var(--ink);
-  outline-offset: 2px;
+  outline: none;
 }
-
+.controls input[type="range"]{ padding: 0; height: 36px; }
 .controls button{
   cursor: pointer;
-  background: linear-gradient(180deg, #1a1a29, #101018);
+  background: linear-gradient(180deg, #1a2040, #0e1120);
+  transition: border-color .15s ease, transform .06s ease;
 }
 .controls button:hover{ border-color: var(--accent); }
-.controls button:focus-visible{ outline: 2px solid var(--focus); }
+.controls button:active{ transform: translateY(1px); }
 
+/* Focus visibility (keyboard users) */
+.controls select:focus-visible,
+.controls input:focus-visible,
+.controls button:focus-visible,
+a:focus-visible{
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ===== Canvas Area ===== */
 .canvas-wrap{
   position: relative;
-  border: 1px solid #1d1d2f;
+  border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
   min-height: 440px;
-  background: radial-gradient(900px 600px at 30% 50%, #0d0d18 20%, #080812 70%);
+  background: radial-gradient(900px 600px at 30% 50%, #0e1226 20%, #0a0d1c 70%);
 }
 
+/* ===== Tooltip ===== */
 #tooltip{
   position: absolute;
   pointer-events: none;
   max-width: 320px;
   padding: .6rem .7rem;
-  background: #0a0a14;
-  border: 1px solid #2a2a3d;
+  background: #0a0d1a;
+  border: 1px solid #28314b;
   border-radius: 10px;
   color: var(--ink);
   box-shadow: 0 10px 30px rgba(0,0,0,.35);
-  display: none;
+  display: none;   /* toggled to block via JS */
   z-index: 10;
   font-size: .95rem;
 }
-
 #tooltip strong{ color: var(--accent); }
 
+/* ===== About Panel ===== */
 .about{
   margin-top: 1.4rem;
-  background: #0a0a14;
-  border: 1px solid #1f1f33;
+  background: #0a0d1a;
+  border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1rem;
   color: var(--muted);
 }
 
+/* ===== Footer & Links ===== */
 footer{
   color: var(--muted);
-  border-top: 1px solid #1e1e30;
+  border-top: 1px solid var(--border);
+}
+a{ color: var(--accent); text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* ===== Responsive ===== */
+@media (max-width: 520px){
+  header, footer { padding: 1rem; }
+  .controls{ grid-template-columns: 1fr; }
 }
 
-a{ color: var(--accent); text-decoration: none; }
-a:focus-visible{ outline: 2px solid var(--focus); border-radius: 6px; }
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce){
+  * { animation: none !important; transition: none !important; }
+}
