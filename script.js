@@ -1,0 +1,1 @@
+let data=[];function preload(){data=loadJSON('data.json');}function setup(){createCanvas(windowWidth,400).parent('p5-holder');textAlign(CENTER);}function draw(){background(10);fill(255);text('Proverb Orbits Visualization',width/2,height/2);}
